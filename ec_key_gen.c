@@ -3,6 +3,7 @@
 #include <openssl/ec.h>
 #include <openssl/pem.h>
 #include <openssl/dh.h>
+#include <openssl/err.h>
 
 
 #define ECCTYPE    "secp256k1"
