@@ -33,8 +33,6 @@ void dh_key()
 			
 	
 	/* Clean up */
-	OPENSSL_free(secret);
-	BN_free(pubkey);
 	DH_free(privkey);
 
 }
