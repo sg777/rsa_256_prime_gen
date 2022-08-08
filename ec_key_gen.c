@@ -11,6 +11,9 @@
 
 #define ECCTYPE    "secp256k1"
 
+void handleErrors(){
+	printf("Some error in dh_key generation");
+}
 
 void dh_key()
 {
