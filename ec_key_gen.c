@@ -12,7 +12,7 @@
 #include <openssl/ec.h>
 #include <openssl/pem.h>
 
-#define ECCTYPE    "secp521r1"
+#define ECCTYPE    "secp256k1"
 
 int main() {
 
@@ -37,7 +37,7 @@ int main() {
   /* ---------------------------------------------------------- *
    * Create a EC key sructure, setting the group type from NID  *
    * ---------------------------------------------------------- */
-  eccgrp = OBJ_txt2nid("secp521r1");
+  eccgrp = OBJ_txt2nid("secp256k1");
   myecc = EC_KEY_new_by_curve_name(eccgrp);
 
   /* -------------------------------------------------------- *
