@@ -1,2 +1,32 @@
-# rsa_256_prime_gen
-This repo contains the code that generates RSA 256 bit prime numbers.
+# RSA 256 bit key generator
+This repo implements the RSA 256 bit key generator in c launguage using openssl bignum.
+
+## Compilation
+```
+./run.sh
+```
+## Key Generation
+Run the following command and it generates a new key pair every time when it gets called. Point to note the public exponent is chosen as `2^16+1`, i,e `e = 65537`.
+```
+./rsa_256_prime_gen 
+```
+## Test Run
+```
+root@sg777-2 ~/rsa_256_prime_gen # ./rsa_256_prime_gen 
+All values are displayed in HEX
+pubkey(e,n) = (10001,DDAB779F2445947E49E7CE63DD6852B2D595FAA327DCEA9629E03F5F16B42F69)
+privkey(d,n) = (50F02E65E7CF1628C4A084DE36F644174567487A1C39CDB1BC5DD10442A828A7,DDAB779F2445947E49E7CE63DD6852B2D595FAA327DCEA9629E03F5F16B42F69)
+root@sg777-2 ~/rsa_256_prime_gen # ./rsa_256_prime_gen 
+All values are displayed in HEX
+pubkey(e,n) = (10001,BBD71FF79D7C453511160683F40CE2D9607206CE31B3D379CC77C58E0168DF49)
+privkey(d,n) = (45D7C75B1A838A7820D23FB9F0949A03F53370B40CA585BF971DB290E21087D,BBD71FF79D7C453511160683F40CE2D9607206CE31B3D379CC77C58E0168DF49)
+root@sg777-2 ~/rsa_256_prime_gen # ./rsa_256_prime_gen 
+All values are displayed in HEX
+pubkey(e,n) = (10001,C1FC6B686C5F307AB3C7462D9554ED7E0F62442D76DB3F373FB20ABADB5C27A5)
+privkey(d,n) = (28D7C32B90C9B7F4D5BE4AB5D53FB4E2DBD02D950639371E16BFD6931C24A48F,C1FC6B686C5F307AB3C7462D9554ED7E0F62442D76DB3F373FB20ABADB5C27A5)
+root@sg777-2 ~/rsa_256_prime_gen # ./rsa_256_prime_gen 
+All values are displayed in HEX
+pubkey(e,n) = (10001,CE3924A66BCFC240ADD513BBD89015093CA63999F4E91132795E46AFAA3E82AD)
+privkey(d,n) = (2E7FC5830DEBB86BFF963C3F1EA76C4A737DB4D2EF06305DF5CCB769441C9271,CE3924A66BCFC240ADD513BBD89015093CA63999F4E91132795E46AFAA3E82AD)
+
+```
