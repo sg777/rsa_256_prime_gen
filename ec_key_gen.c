@@ -1,3 +1,9 @@
+/*
+To Compile: gcc -o eckeycreate ec_key_gen.c -lssl -lcrypto 
+To run:  ./eckeycreate 
+
+*/
+
 #include <openssl/bio.h>
 #include <openssl/err.h>
 #include <openssl/ec.h>
@@ -5,9 +11,6 @@
 #include <openssl/dh.h>
 #include <openssl/conf.h>
 #include <openssl/evp.h>
-
-
-
 
 #define ECCTYPE    "secp256k1"
 
