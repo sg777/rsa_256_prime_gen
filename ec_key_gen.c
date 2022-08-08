@@ -1,18 +1,44 @@
-/* ------------------------------------------------------------ *
- * file:        eckeycreate.c                                   *
- * purpose:     Example code for creating elliptic curve        *
- *              cryptography (ECC) key pairs                    *
- * author:      01/26/2015 Frank4DD                             *
- *                                                              *
- * gcc -o eckeycreate eckeycreate.c -lssl -lcrypto              *
- * ------------------------------------------------------------ */
-
 #include <openssl/bio.h>
 #include <openssl/err.h>
 #include <openssl/ec.h>
 #include <openssl/pem.h>
+#include <openssl/dh.h>
+
 
 #define ECCTYPE    "secp256k1"
+
+
+void dh_key()
+{
+	DH *privkey;
+	int codes;
+	int secret_size;
+	
+	/* Generate the parameters to be used */
+	if(NULL == (privkey = DH_new())) handleErrors();
+	if(1 != DH_generate_parameters_ex(privkey, 2048, DH_GENERATOR_2, NULL)) handleErrors();
+	
+	if(1 != DH_check(privkey, &codes)) handleErrors();
+	if(codes != 0)
+	{
+		/* Problems have been found with the generated parameters */
+		/* Handle these here - we'll just abort for this example */
+		printf("DH_check failed\n");
+		abort();
+	}
+	
+	/* Generate the public and private key pair */
+	if(1 != DH_generate_key(privkey)) handleErrors();
+	
+			
+	
+	/* Clean up */
+	OPENSSL_free(secret);
+	BN_free(pubkey);
+	DH_free(privkey);
+
+}
+
 
 int main() {
 
@@ -74,11 +100,19 @@ int main() {
   /* ---------------------------------------------------------- *
    * Here we print the private/public key data in PEM format.   *
    * ---------------------------------------------------------- */
+
+  
+  printf("\nThe value of x\n");
   if(!PEM_write_bio_PrivateKey(outbio, pkey, NULL, NULL, 0, 0, NULL))
     BIO_printf(outbio, "Error writing private key data in PEM format");
 
+  printf("\nThe value of Q = G*x\n");
   if(!PEM_write_bio_PUBKEY(outbio, pkey))
     BIO_printf(outbio, "Error writing public key data in PEM format");
+
+
+
+  
 
   /* ---------------------------------------------------------- *
    * Free up all structures                                     *
